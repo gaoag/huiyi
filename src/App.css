@@ -88,22 +88,391 @@ header {
 
 
 .App {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr) 0.8fr;
-  grid-template-rows: 0.33fr 0.66fr auto;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  } 
   
+} 
+  
+#pageHeader {
+	height: 55px
+}
 
-#mainVideo { grid-area: 2 / 1 / 3 / 3; }
-#playlistSection { grid-area: 2 / 3 / 4 / 4; }
-#commentsSection { grid-area: 3 / 1 / 4 / 3; } 
+#mainBody {
+	display: flex;
+	/* justify-content: space-between; */
+}
+
+#leftHalf {
+	float: left;
+	width: 55vw;
+	margin-left: min(5vw, 120px);
+	margin-top: 25px;
+	
+}
+
+#playlistSection {
+	margin-left: 55vw + min(5vw, 150px);
+	width: 27vw;
+	/* margin-right: 120px; */
+	margin-top: 25px;
+	right: 10vw;
+	position: fixed;
+
+}
+
+
+
+#videoPlayer {
+	width: 100%;
+	height: 100%;
+	/* grid-row: 1/2; */
+}
+
+
+/* #fillerColumn { grid-area: 1 / 1 / 4 / 2}
+#mainVideo { grid-area: 2 / 2 / 3 / 4; }
+#playlistSection { grid-area: 2 / 4 / 4 / 5; }
+#commentsSection { grid-area: 3 / 2 / 4 / 4; }  */
   
 
 .playlistThumbnail {
   height: 50px;
 }
+
+#titleBar {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+#title {
+	font-size: 14pt;
+}
+#viewcountAndDate {
+	margin-top: 5px;
+	font-weight:200;
+	font-size: 10pt;
+}
+
+#descSection {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-top: 1px solid rgb(220, 220, 220);
+	border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+#userDescSection {
+	display: inline-block
+}
+
+#userDesc {
+	
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+#pfpDesc {
+	float:left;
+	border-radius: 50%;
+	height: 50px;
+	margin-top: 5px;
+}
+
+#descText {
+	margin-top: 10px;
+	margin-left: 60px;
+}
+
+#usernameDesc {
+	font-weight: bold;
+
+}
+#subscriberDesc {
+	font-weight: lighter;
+	font-size: 9pt;
+}
+
+
+
+#commentsSection {
+	margin-top: 20px
+}
+
+.reply {
+	margin-left: 60px;
+	margin-bottom: 10px;
+	display: flex;
+  flex-direction: row;
+}
+
+.comment {
+	margin-top: 25px;
+	display: flex;
+  flex-direction: row;
+}
+
+#commentPfp{
+	display: inline-block;
+}
+#commentBody {
+	display: inline-block;
+}
+
+.comment img {
+	border-radius: 50%;
+	height: 50px;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+.reply img {
+	border-radius: 50%;
+	float:left;
+	height: 25px;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+
+#commentMetadata {
+	margin-top: 5px;
+}
+#commentText {
+	margin-top: 5px;
+}
+#commentUsername {
+	font-weight: bolder;
+	font-size: 10pt;
+}
+#commentDate {
+	font-weight: lighter;
+	margin-left: 3px;
+	font-size: 9pt;
+}
+
+
+.replyButton {
+	margin-left: 60px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    padding: 0 8px;
+    min-width: 64px;
+    height: 36px;
+    vertical-align: middle;
+    text-align: center;
+    text-overflow: ellipsis;
+    color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    background-color: transparent;
+    font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+    font-size: 12pt;
+    font-weight: 500;
+    line-height: 36px;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+}
+
+.replyButton::-moz-focus-inner {
+    border: none;
+}
+
+/* Overlay */
+.replyButton::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: currentColor;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* Ripple */
+.replyButton::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    padding: 50%;
+    width: 32px;
+    height: 32px;
+    background-color: currentColor;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1) ;
+    transition: opacity 1s, transform 0.5s;
+}
+
+/* Hover, Focus */
+.replyButton:hover::before {
+    opacity: 0.04;
+}
+
+.replyButton:focus::before {
+    opacity: 0.12;
+}
+
+.replyButton:hover:focus::before {
+    opacity: 0.16;
+}
+
+/* Active */
+.replyButton:active::after {
+    opacity: 0.16;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0s;
+}
+
+/* Disabled */
+.replyButton:disabled {
+    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+    background-color: transparent;
+    cursor: initial;
+}
+
+.replyButton:disabled::before {
+    opacity: 0;
+}
+
+.replyButton:disabled::after {
+    opacity: 0;
+}
+
+#playlistContainer {
+	border: 1px solid rgb(220, 220, 220);
+	background-color: white;;
+}
+#playlistName {
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-weight:600
+}
+.playlistElem {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	padding-bottom: 10px;
+	background-color: rgb(246, 246, 246);
+}
+
+.playlistElemTitle {
+	margin-right: 20px;
+}
+
+.playlistElem:hover {
+	-webkit-filter: brightness(90%);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+}
+
+.playlistElemThumbnail {
+	order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+}
+
+.playlistElemThumbnail img {
+	height: 60px;
+	width: auto;
+}
+
+.playlistElemTitle {
+	order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+	margin-left: 10px;
+}
+
+.playlistElemTitle #title{
+	font-weight: 600;
+	font-size: 12pt;
+}
+
+#playlistVisualElements {
+	margin-bottom: 5px;
+}
+.playlistElemTitle #username{
+	font-weight: 200;
+	font-size: 10pt;
+}
+
+.playlistElem#highlighted {
+	-webkit-filter: brightness(90%);
+	
+}
+
+#shuffleButton img {
+	height: 40px;
+	width: auto;
+}
+
+#likeButton img {
+	height: 40px;
+	width: auto;
+
+}
+#playlistCreator {
+	font-weight:300;
+	margin-top:5px;
+	font-size: 10pt;
+}
+
+#playlistVisualElements {
+	margin-bottom: 10px;
+}
+
+
+
+
+
+#shuffleButton::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    padding: 50%;
+    width: 32px;
+    height: 32px;
+    background-color: currentColor;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1) ;
+    transition: opacity 1s, transform 0.5s;
+}
+
+
+#shuffleButton:hover {
+	-webkit-filter: brightness(90%);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#shuffleButton:active::after {
+    opacity: 0.16;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0s;
+}
+
+
+
+
+
+
+
 
 
 .App-logo {

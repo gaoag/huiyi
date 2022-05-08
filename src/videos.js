@@ -1,5 +1,10 @@
-import users from './users.js'
-console.log(users['OceanDark']);
+class User {
+    constructor(user, pfp) {
+      this.username = user
+      this.pfp = pfp
+    }
+  }
+  
   class Comment {
     constructor(user, date, text, replies) {
       this.user = user
@@ -9,34 +14,106 @@ console.log(users['OceanDark']);
     }
   }
   
- 
+  const videos = [
+    {
+      id: "AKRA7weVyLs",
+      description: "A timeless track for a timeless age.",
+      title: "Carry Me, Ohio - Sun Kil Moon",
+      date: "Oct 7, 2007",
+      thumbnail: "logo192.png",
+      user: new User("Phil Bebbington", "images/pfps/video1pfp.jpg"),
+      viewcount: 2084830,
+      subscribers: "22.9K subscribers"
+     },
+     {
+      id: "Yf5yBXFbXK4",
+      description: "I lost my way / on a trip meant for two / We left our hearts in a suitcase unused / High above Chicago / I'll be home tomorrow ",
+      title: "High Above Chicago",
+      date: "Aug 8, 2015",
+      thumbnail: "",
+      user: new User("Fialta", "logo192.png"),
+      viewcount: 352962 ,
+      suscribers: "22.9K subscribers"
+     },
+     {
+      id: "pBMwwJMkcRA",
+      description: "",
+      title: "Sufjan Stevens - The Predatory Wasp Of The Palisades Is Out To Get Us!",
+      date: "Mar 5, 2010",
+      thumbnail: "",
+      user: new User("Sufjan Stevens", "logo192.png"),
+      viewcount: 1040545 ,
+      suscribers: "22.9K subscribers"
+     },
+     {
+      id: "T6S5wPTICR0",
+      description: "Slaughter Beach, Dog perform 'Acolyte' at Connie's Cleaners in Chicago, IL. \nFar Out is an Audiotree series where we step outside our studio to record artists in unusual environments.",
+      title: "Slaughter Beach, Dog - Acolyte | Audiotree Far Out",
+      date: "Jan 8, 2017",
+      thumbnail: "",
+      user: new User("Audiotree", "logo192.png"),
+      viewcount: 267090 ,
+      suscribers: "22.9K subscribers"
+     },
+     {
+      id: "AOMyS78o5YI",
+      description: "beach boys god only knows",
+      title: "The Beach Boys - God only knows",
+      date: "Apr 5, 2009",
+      thumbnail: "",
+      user: new User("Walter Katekaru", "logo192.png"),
+      viewcount: 10915501 ,
+      suscribers: "22.9K subscribers"
+     },
+    //  {
+    //   id: "Yf5yBXFbXK4",
+    //   description: "I lost my way / on a trip meant for two / We left our hearts in a suitcase unused / High above Chicago / I'll be home tomorrow ",
+    //   title: "High Above Chicago",
+    //   date: "Aug 8, 2015",
+    //   thumbnail: "",
+    //   user: new User("Fialta", "logo192.png"),
+    //   viewcount: 352962 
+    //  },
+    
+    
+    ]
   
-  
+  const users = {
+    'alex': new User('alex', 'logo192.png'),
+    'kristine': new User('kristine', 'logo192.png'),
+    'boseph': new User('boseph', 'logo192.png'),
+    'jaef': new User('jaef', 'logo192.png'),
+    'pweo': new User('pweo', 'logo192.png'),
+    'qwpeot': new User('qwpeot', 'logo192.png'),
+    'alex2': new User('alex2', 'logo192.png'),
+    'kristine3': new User('kristine3', 'logo192.png')
+    
+  }
   
   const comments = [
     // for video 1 - https://www.youtube.com/watch?v=AKRA7weVyLs
     [
-      new Comment(users['OceanDark'], '2 years ago', 'The kinda songs you actually listen to late at night but can’t play them around your friends because they’ll just call the song “too sappy”', [
-        new Comment(users['omnivorous65'], '2 years ago', 'get better friends'),
-        new Comment(users['tuig97jai'], '2 years ago', 'thanks mate you just made my first laugh today'),
+      new Comment(users['alex2'], '2 years ago', 'The kinda songs you actually listen to late at night but can’t play them around your friends because they’ll just call the song “too sappy”', [
+        new Comment(users['alex2'], '2 years ago', 'get better friends'),
+        new Comment(users['alex2'], '2 years ago', 'thanks mate you just made my first laugh today'),
       ]),
 
-      new Comment(users['chance.'], '1 month ago', "Reminds me of a day I once spent in the fields. I think it was just me and one other person. We went on an adventure, I saw their hometown, their old house, a field full of sunflowers. It's so painful because I'll always remember warmth - of sunflowers on my eyes, of sunlight on my lips, of their touch in my hands. But the warmth, without the person providing it, doesn't reach my heart at all. I treasure it anyways.", [
-        new Comment(users['aces9385'], '2 years ago', "this really touched me because I had a routine of visiting the rose gardens near my house every week before The Forgetting and I still go but it just feels something is missing. and i think its a person but i'm not sure, cos at least u remember going with someone, but i don't even remember if i shared that routine with anyone"),
-        new Comment(users['baby bok choy'], '2 years ago', "Keep going @chance., maybe you'll see someone there one day and it will all come rushing back!"),
-        new Comment(users['chance.'], '2 years ago', "yeah but point is, maybe i went by myself originally. so i'd just be looking for someone who was never there in the first place. thatd be sad. lol"),
+      new Comment(users['alex2'], '1 month ago', "Reminds me of a day I once spent in the fields. I think it was just me and one other person. We went on an adventure, I saw their hometown, their old house, a field full of sunflowers. It's so painful because I'll always remember warmth - of sunflowers on my eyes, of sunlight on my lips, of their touch in my hands. But the warmth, without the person providing it, doesn't reach my heart at all. I treasure it anyways.", [
+        new Comment(users['alex2'], '2 years ago', "this really touched me because I had a routine of visiting the rose gardens near my house every week before The Forgetting and I still go but it just feels something is missing. and i think its a person but i'm not sure, cos at least u remember going with someone, but i don't even remember if i shared that routine with anyone"),
+        new Comment(users['alex2'], '2 years ago', "Keep going [INSERT USERNAME], maybe you'll see someone there one day and it will all come rushing back!"),
+        new Comment(users['alex2'], '2 years ago', "yeah but point is, maybe i went by myself originally. so i'd just be looking for someone who was never there in the first place. thatd be sad. lol"),
       ]),
 
-      new Comment(users['codeFoto'], '1 year ago', "In Portuguese they call it 'saudade', it's described as a deep emotional state of nostalgia or a longing for an absent something or someone that one cares for and/or loves deeply. It is weird - there was never anything like The Forgetting before, but we still have the language to describe it. How can that be?", [
-        new Comment(users['culota'], '1 year ago', "In Bosnian, they call it 'sevdah'."),
-        new Comment(users['kbnped'], '1 year ago', "In Welsh it is 'Hiraeth'. Besos... we will all get through this together"),
+      new Comment(users['alex2'], '1 year ago', "In Portuguese they call it 'saudade', it's described as a deep emotional state of nostalgia or a longing for an absent something or someone that one cares for and/or loves deeply. It is weird - there was never anything like The Forgetting before, but we still have the language to describe it. How can that be?", [
+        new Comment(users['alex2'], '1 year ago', "In Bosnian, they call it 'sevdah'."),
+        new Comment(users['alex2'], '1 year ago', "In Welsh it is 'Hiraeth'. Besos... we will all get through this together"),
 
       ]),
   
-      new Comment(users['Rare!'], '1 year ago', "Reading all these comments, I imagine someone going through the comment section after we're all dead and wondering if we ever found our people again after we wrote what we wrote. \n To that one person I do not know yet, I love you. I don't know how or why, I just know that I do. To the person I no longer know, I love you too. I don't remember the hows or whys, I just know that I did once. Maybe I feel too much?", [
-        new Comment(users['Mr Green thumb'], '1 year ago', 'Beautifully said and I want to cry. I have thoughts similar to yours as well. Some people should stop and think about those things.'),
-        new Comment(users['laurydel'], '1 day ago', 'I feel you bro..❤️🌠🤲.. beautifully said ☺️💌'),
-        new Comment(users['ThreeThreeThree'], '1 day ago', 'yall need to stop being so dramatic')
+      new Comment(users['alex2'], '1 year ago', "Reading all these comments, I imagine someone going through the comment section after we're all dead and wondering if we ever found our people again after we wrote what we wrote. \n To that one person I do not know yet, I love you. I don't know how or why, I just know that I do. To the person I no longer know, I love you too. I don't remember the hows or whys, I just know that I did once. Maybe I feel too much?", [
+        new Comment(users['alex2'], '1 year ago', 'Beautifully said and I want to cry. I have thoughts similar to yours as well. Some people should stop and think about those things.'),
+        new Comment(users['alex2'], '1 day ago', 'I feel you bro..❤️🌠🤲.. beautifully said ☺️💌'),
+        new Comment(users['alex2'], '1 day ago', 'yall need to stop being so dramatic')
       ]),
   
       new Comment(users['alex2'], '8 months ago', 'I once met a person with a soul so bright that our short time together felt like a lifetime. For some reason, after The Forgetting, the recent days blur past so much faster than they used to. I miss you, whoever you were.', [
@@ -137,7 +214,7 @@ console.log(users['OceanDark']);
         new Comment(users['alex2'], '2 days ago', "so in love with this song. got me all emotional and feeling nostalgic, shit... too good.")
       ]),
 
-      new Comment(users['alex2'], '4 days ago', "This makes me think of the last summer before I moved, some good friends, some bad laughs, late nights , and seeing her for the last time.", []),
+      new Comment(users['alex2'], '4 days ago', "This makes me think of the last summer before I moved, some good friends, some bad laughs, late nights , and seeing her for the last time."),
 
       new Comment(users['alex2'], '4 days ago', "Discovered this band on Pandora back in 2022 right as the pandemic was coming to an end. I was blown away by it. His voice felt like it carried the pure melancholy of the past few years, but it felt like hope too. This ong awakens something inside me.", [])      
 
@@ -170,4 +247,4 @@ console.log(users['OceanDark']);
   ]
     
 
-  export default comments;
+  export default videos;

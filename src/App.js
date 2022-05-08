@@ -1,7 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react';
+import users from './users.js'
 import comments from './comments.js';
+import videos from './videos.js';
+import IframeResizer from 'iframe-resizer-react';
 
 
 
@@ -17,53 +20,65 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-          <div class="header__logo">
-              <a href="#">
-                  <img src="images/header/hamburger.png" alt="navigation button" class="header__hamburger-logo"/>
-              </a>
-              <a href="#">
-                  <img src="images/header/yt-logo.png" alt="YouTube logo" class="header__yt-logo"/>
-              </a>
-          </div>
-          <div class="search">
-              <form>
-                  <input name="search" id="search__input" placeholder="huiyi"/>
-                  <a href="#">
-                      <img src="images/header/search.png" alt="Search Icon" class="search__icon"/>
-                  </a>
-              </form>
-          </div>
-          <div class="header__icons header__logo">
-              <a href="#">
-                  <img src="images/header/grid.png" alt="grid icon" class="header__icons--grid"/>
-              </a>
-              <a href="#">
-                  <img src="images/header/upload.png" alt="grid icon" class="header__icons--upload"/>
-              </a>
-              <a href="#">
-                  <img src="images/header/bell.png" alt="grid icon" class="header__icons--bell"/>
-              </a>
-              <a href="#">
-                  <img src="images/header/profile-placeholder.png" alt="grid icon" class="header__icons--profile"/>
-              </a>
-          </div>
-      </header>
-
-      <div id="mainVideo">
-        <VideoEmbed videos={videos} currentVideoNumber={currentVideoNumber}/>
-        <VideoDescription videos={videos} currentVideoNumber={currentVideoNumber}/>
+      <div id="pageHeader">
+        <header>
+            <div class="header__logo">
+                <a href="#">
+                    <img src="images/header/hamburger.png" alt="navigation button" class="header__hamburger-logo"/>
+                </a>
+                <a href="#">
+                    <img src="images/header/yt-logo.png" alt="YouTube logo" class="header__yt-logo"/>
+                </a>
+            </div>
+            <div class="search">
+                <form>
+                    <input name="search" id="search__input" placeholder="huiyi"/>
+                    <a href="#">
+                        <img src="images/header/search.png" alt="Search Icon" class="search__icon"/>
+                    </a>
+                </form>
+            </div>
+            <div class="header__icons header__logo">
+                <a href="#">
+                    <img src="images/header/grid.png" alt="grid icon" class="header__icons--grid"/>
+                </a>
+                <a href="#">
+                    <img src="images/header/upload.png" alt="grid icon" class="header__icons--upload"/>
+                </a>
+                <a href="#">
+                    <img src="images/header/bell.png" alt="grid icon" class="header__icons--bell"/>
+                </a>
+                <a href="#">
+                    <img src="images/header/profile-placeholder.png" alt="grid icon" class="header__icons--profile"/>
+                </a>
+            </div>
+        </header>
       </div>
+      
+      <div id="mainBody">
+        <div id="leftHalf">
+          
+          <div id="mainVideo">
+            <div id="videoPlayer">
+              <VideoEmbed videos={videos} currentVideoNumber={currentVideoNumber}/>
+            </div>
+            <div id="videoDescription">
+              <VideoDescription videos={videos} currentVideoNumber={currentVideoNumber}/>
+            </div>
+          </div>
 
-      <div id="commentsSection">
-        <CommentsFeed comments={comments} currentVideoNumber={currentVideoNumber}/>
-      </div>
+          <div id="commentsSection">
+            <CommentsFeed comments={comments} currentVideoNumber={currentVideoNumber}/>
+          </div>
+        </div>
 
-      <div id="playlistSection">
-        <PlaylistLayout videos={videos} currentVideoNumber={currentVideoNumber} setCurrentVideoNumber={setCurrentVideoNumber}/>
+        <div id="playlistSection">
+          <PlaylistLayout videos={videos} currentVideoNumber={currentVideoNumber} setCurrentVideoNumber={setCurrentVideoNumber}/>
+        </div>
       </div>
      
     </div>
+    
   );
 }
 
@@ -74,10 +89,17 @@ function SingleComment(props) {
 
   return (
     <div class={commentClass}>
-      <h3>{props.user.username}</h3>
-      <h3>{props.user.pfp}</h3>
-      <p>{props.text}</p>
-      <p>{props.date}</p>
+      <div id="commentPfp">
+        <img src={props.user.pfp}/>
+      </div>
+      <div id="commentBody">
+        <div id="commentMetadata">
+          <span id="commentUsername">{props.user.username}</span> <span id='commentDate'>{props.date}</span>
+        </div>
+        <div id="commentText">
+          {props.text}
+        </div>
+      </div>
     </div>
   )
 
@@ -110,8 +132,9 @@ function CommentDisplay(props) {
     return (
       <div>
         <SingleComment user={currentComment.user} date={currentComment.date} text={currentComment.text} reply={false}/>
+        <button class="replyButton" onClick={() => setShowReplies(false)}>▲ Hide replies</button>
         {replyComments}
-        <button onClick={() => setShowReplies(false)}>Hide Replies</button>
+        
       </div>
     )
 
@@ -119,7 +142,7 @@ function CommentDisplay(props) {
     return (
       <div>
         <SingleComment user={currentComment.user} date={currentComment.date} text={currentComment.text}/>
-        <button onClick={() => setShowReplies(true)}>Show Replies</button>
+        <button class="replyButton" onClick={() => setShowReplies(true)}>▼ Show replies</button>
       </div>
     )
   }
@@ -159,14 +182,23 @@ function VideoEmbed(props) {
   console.log(videoEmbedID)
   return (
     <div>
-      <iframe
-      width="560" height="315"
+      <IframeResizer
+        log
+        src={`https://www.youtube.com/embed/${videoEmbedID}`}
+        style={{ width: '100%', height: '500px', frameBorder: '0', }}
+        // style={{ width: "100%", height: "auto", minWidth: "500px", minHeight: "300px", frameBorder: '0', }}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title="Embedded youtube"
+      />
+      {/* <iframe id="videoPlayerIFrame"
+      // width="1000px" height="800px"
       src={`https://www.youtube.com/embed/${videoEmbedID}`}
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
       title="Embedded youtube"
-    />
+      /> */}
   </div>
   )
 }
@@ -175,21 +207,28 @@ function VideoDescription(props) {
 
 
 
-  let id, desc, title, date, thumbnail, user, viewcount;
-  ({id, desc, title, date, thumbnail, user, viewcount} = props.videos[props.currentVideoNumber])
+  let id, description, title, date, thumbnail, user, viewcount, subscribers;
+  ({id, description, title, date, thumbnail, user, viewcount, subscribers} = props.videos[props.currentVideoNumber])
+
 
 
   return (
     <div>
       <div id='titleBar'>
         <div id="title">{title}</div>
-        <div id="date">{date}</div>
-        <div id="viewcount">{viewcount}</div>
+        <div id="viewcountAndDate">{viewcount + ' views • ' + date}</div>
+        {/* <div id="viewcount">{viewcount}</div> */}
       </div>
       <div id='descSection'>
-        <div id="usernameDesc">{user.username}</div>
-        <div id="pfpDesc">{user.pfp}</div>
-        <div id="desc">{desc}</div>
+        <div id='userDescSection'>
+          <img id="pfpDesc" src={user.pfp}/>
+          <div id="userDesc">
+            <div id="usernameDesc">{user.username}</div>
+            <div id="subscriberDesc">{subscribers}</div>
+          </div>
+          
+        </div>
+        <div id="descText">{description}</div>
       </div>
     </div>
   )
@@ -202,20 +241,32 @@ function PlaylistLayout(props) {
   const playlistElems = []
   for (let i = 0; i < videos.length; i++) {
     let highlighted = (i == props.currentVideoNumber) ? "highlighted" : "";
-    let thumbnailUrl = "https://img.youtube.com/vi/" + videos[i].id + "/sddefault.jpg";
+    let thumbnailUrl = "https://img.youtube.com/vi/" + videos[i].id + "/mqdefault.jpg";
     let num = i;
     
     playlistElems.push(
       <div onClick={(e) => {console.log(num);props.setCurrentVideoNumber(num)}} class="playlistElem" id={highlighted}>
-        <img class="playlistThumbnail" src={thumbnailUrl}/>
-        <p>{videos[i].title}</p>
-        <p>{videos[i].user.username}</p>
+        <div class="playlistElemThumbnail"><img src={thumbnailUrl}/></div>
+        <div class="playlistElemTitle">
+          <div id="title">{videos[i].title}</div>
+          <div id="username">{videos[i].user.username}</div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div>
+    <div id="playlistContainer">
+      <div id="playlistTitle">
+        <div id="playlistName">
+          <div>huiyi - a playlist</div>
+          <div id="playlistCreator">Keming Gao - {props.currentVideoNumber+1}/5</div>
+        </div>
+        <div id="playlistVisualElements">
+          <span id="shuffleButton" onClick={(e) => {props.setCurrentVideoNumber(Math.floor(Math.random() * (5)))}} ><img src="images/assets/shuffle.jpg"/></span>
+          <span id="likeButton"><img src="images/assets/thumb.jpg"/></span>
+        </div>
+      </div>
       {playlistElems}
     </div>
   )
