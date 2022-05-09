@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
+import {useState, useEffect } from 'react';
 import users from './users.js'
 import comments from './comments.js';
 import videos from './videos.js';
@@ -12,74 +12,85 @@ import IframeResizer from 'iframe-resizer-react';
 function App() {
 
   const [currentVideoNumber, setCurrentVideoNumber] = useState(0)
+  const [titlePage, setTitlePage] = useState(true)
 
+
+  if (titlePage) {
+    return (
+      <div class="startStart"
+      onClick={(e) => {setTitlePage(false)}}
+      ><img src="images/huiyi.png"></img></div>
+      
+    )
+  }
   
 
   // let currId, currDesc, currTitle, currDate;
   // ({currId, currDesc, currTitle, currDate} = videos[currentVideoNumber])
+  else {
+    return (
+      <div className="App">
+        <div id="pageHeader">
+          <header>
+              <div class="header__logo">
+                  <a href="#">
+                      <img src="images/header/hamburger.png" alt="navigation button" class="header__hamburger-logo"/>
+                  </a>
+                  <a href="#">
+                      <img src="images/header/yt-logo.png" alt="YouTube logo" class="header__yt-logo"/>
+                  </a>
+              </div>
+              <div class="search">
+                  <form>
+                      <input name="search" id="search__input" placeholder="huiyi - refresh to return to title screen"/>
+                      <a href="#">
+                          <img src="images/header/search.png" alt="Search Icon" class="search__icon"/>
+                      </a>
+                  </form>
+              </div>
+              <div class="header__icons header__logo">
+                  <a href="#">
+                      <img src="images/header/grid.png" alt="grid icon" class="header__icons--grid"/>
+                  </a>
+                  <a href="#">
+                      <img src="images/header/upload.png" alt="grid icon" class="header__icons--upload"/>
+                  </a>
+                  <a href="#">
+                      <img src="images/header/bell.png" alt="grid icon" class="header__icons--bell"/>
+                  </a>
+                  <a href="#">
+                      <img src="images/header/profile-placeholder.png" alt="grid icon" class="header__icons--profile"/>
+                  </a>
+              </div>
+          </header>
+        </div>
+        
+        <div id="mainBody">
+          <div id="leftHalf">
+            
+            <div id="mainVideo">
+              <div id="videoPlayer">
+                <VideoEmbed videos={videos} currentVideoNumber={currentVideoNumber}/>
+              </div>
+              <div id="videoDescription">
+                <VideoDescription videos={videos} currentVideoNumber={currentVideoNumber}/>
+              </div>
+            </div>
 
-  return (
-    <div className="App">
-      <div id="pageHeader">
-        <header>
-            <div class="header__logo">
-                <a href="#">
-                    <img src="images/header/hamburger.png" alt="navigation button" class="header__hamburger-logo"/>
-                </a>
-                <a href="#">
-                    <img src="images/header/yt-logo.png" alt="YouTube logo" class="header__yt-logo"/>
-                </a>
+            <div id="commentsSection">
+              <CommentsFeed comments={comments} currentVideoNumber={currentVideoNumber}/>
             </div>
-            <div class="search">
-                <form>
-                    <input name="search" id="search__input" placeholder="huiyi"/>
-                    <a href="#">
-                        <img src="images/header/search.png" alt="Search Icon" class="search__icon"/>
-                    </a>
-                </form>
-            </div>
-            <div class="header__icons header__logo">
-                <a href="#">
-                    <img src="images/header/grid.png" alt="grid icon" class="header__icons--grid"/>
-                </a>
-                <a href="#">
-                    <img src="images/header/upload.png" alt="grid icon" class="header__icons--upload"/>
-                </a>
-                <a href="#">
-                    <img src="images/header/bell.png" alt="grid icon" class="header__icons--bell"/>
-                </a>
-                <a href="#">
-                    <img src="images/header/profile-placeholder.png" alt="grid icon" class="header__icons--profile"/>
-                </a>
-            </div>
-        </header>
+          </div>
+
+          <div id="playlistSection">
+            <PlaylistLayout videos={videos} currentVideoNumber={currentVideoNumber} setCurrentVideoNumber={setCurrentVideoNumber}/>
+          </div>
+        </div>
+      
       </div>
       
-      <div id="mainBody">
-        <div id="leftHalf">
-          
-          <div id="mainVideo">
-            <div id="videoPlayer">
-              <VideoEmbed videos={videos} currentVideoNumber={currentVideoNumber}/>
-            </div>
-            <div id="videoDescription">
-              <VideoDescription videos={videos} currentVideoNumber={currentVideoNumber}/>
-            </div>
-          </div>
-
-          <div id="commentsSection">
-            <CommentsFeed comments={comments} currentVideoNumber={currentVideoNumber}/>
-          </div>
-        </div>
-
-        <div id="playlistSection">
-          <PlaylistLayout videos={videos} currentVideoNumber={currentVideoNumber} setCurrentVideoNumber={setCurrentVideoNumber}/>
-        </div>
-      </div>
-     
-    </div>
-    
-  );
+    );
+  }
 }
 
 function SingleComment(props) {
@@ -115,6 +126,11 @@ function CommentDisplay(props) {
   // a user, date, text, and LIST[Comment Class Objects] 
   // commentDisplay renders a bunch of SingleComments + a ReplyOnclick
   // the Reply OnClick, when turned "on", renders al of the replies as SingleComments too, but with a slight offset
+  
+  useEffect(() => {    
+    setShowReplies(false);
+  }, [props.currVideo]);
+
 
   const currentComment = props.comment;
   console.log(currentComment)
@@ -161,7 +177,7 @@ function CommentsFeed(props) {
   const toDisplay = []
   for (let i = 0; i < currComments.length; i++) {
     toDisplay.push(
-      <CommentDisplay comment={currComments[i]}/>
+      <CommentDisplay currVideo={props.currentVideoNumber} comment={currComments[i]}/>
     );
     
   }
@@ -259,8 +275,8 @@ function PlaylistLayout(props) {
     <div id="playlistContainer">
       <div id="playlistTitle">
         <div id="playlistName">
-          <div>huiyi - a playlist</div>
-          <div id="playlistCreator">Keming Gao - {props.currentVideoNumber+1}/5</div>
+          <div>huiyi - a playlist from 2038</div>
+          <div id="playlistCreator">Keming Gao - {props.currentVideoNumber+1}/6</div>
         </div>
         <div id="playlistVisualElements">
           <span id="shuffleButton" onClick={(e) => {props.setCurrentVideoNumber(Math.floor(Math.random() * (5)))}} ><img src="images/assets/shuffle.jpg"/></span>

@@ -40,9 +40,7 @@ class User {
       'KTCTunes': new User('KTCTunes', '/images/pfps/KTCTunes.jpg'),
       'quinnalaGaming': new User('quinnalaGaming', '/images/pfps/quinnalaGaming.jpg'),
       'acacia world': new User('acacia world', '/images/pfps/acacia world.jpg'),
-      'tuig97jai': new User('tuig97jai', '/images/pfps/tuig97jai.jpg'),
       'sohopowell': new User('sohopowell', '/images/pfps/sohopowell.jpg'),
-      'omnivorous65': new User('omnivorous65', '/images/pfps/omnivorous65.jpg'),
       'madokamagica s2 now': new User('madokamagica s2 now', '/images/pfps/madokamagica s2 now.jpg'),
       'MoonDog': new User('MoonDog', '/images/pfps/MoonDog.jpg'),
       'illama': new User('illama', '/images/pfps/illama.jpg'),
@@ -80,7 +78,6 @@ class User {
       'kbone maridinga': new User('kbone maridinga', '/images/pfps/kbone maridinga.jpg'),
       'm3t4lh34ad': new User('m3t4lh34ad', '/images/pfps/m3t4lh34ad.jpg'),
       'GouseHost': new User('GouseHost', '/images/pfps/GouseHost.jpg'),
-      'OceanDark': new User('OceanDark', '/images/pfps/OceanDark.jpg'),
       'poca': new User('poca', '/images/pfps/poca.jpg'),
       'ohno its a ghost': new User('ohno its a ghost', '/images/pfps/ohno its a ghost.jpg'),
       'fergavicious': new User('fergavicious', '/images/pfps/fergavicious.jpg'),
@@ -90,7 +87,11 @@ class User {
       'Bo 2 4 u': new User('Bo 2 4 u', '/images/pfps/Bo 2 4 u.jpg'),
       'mustards': new User('mustards', '/images/pfps/mustards.jpg'),
       'vinvinvin': new User('vinvinvin', '/images/pfps/vinvinvin.jpg'),
-      'alex2': new User('alex2', '/images/pfps/logo192.png'),
+      'alex2': new User('alex2', '/images/pfps/alex2.jpg'),
+      'Mason Campos': new User('Mason Campos', '/images/pfps/MC1.png'),
+      'Laurie Ingham': new User('Laurie Ingham', '/images/pfps/MC2.png'),
+      'officialmelzz': new User('officialmelzz', '/images/pfps/officialmelzz.jpg'),
+      'larmando22': new User('larmando22', '/images/pfps/larmando22.jpg'),
       
     }
   

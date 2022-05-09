@@ -1,3 +1,21 @@
+.startStart {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.startStart img {
+	width: 50vw;
+	margin-top: 10vh;
+	
+}
+
+
+ 
+
+
 header {
 	grid-area: header;
 	height: 55px;
@@ -86,10 +104,10 @@ header {
 }
 
 
-
-.App {
-  
-} 
+* {
+	
+	font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+}
   
 #pageHeader {
 	height: 55px
@@ -234,10 +252,11 @@ header {
 
 
 #commentMetadata {
-	margin-top: 5px;
+	/* margin-top: 5px; */
 }
 #commentText {
 	margin-top: 5px;
+	font-size: 11pt;
 }
 #commentUsername {
 	font-weight: bolder;
