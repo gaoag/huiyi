@@ -43,7 +43,7 @@ class User {
       thumbnail: "",
       user: new User("Kuzication", "images/pfps/Kuzication.jpg"),
       viewcount: 1040671 ,
-      subscribers: "352"
+      subscribers: "352 subscribers"
      },
      {
       id: "T6S5wPTICR0",
